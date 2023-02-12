@@ -12,8 +12,6 @@ Console.WriteLine("Convert List of HC Numbers to XML");
 var hcNumbers = new Faker<HCNumberList>()
     .RuleFor(x => x.HCNumbers, f => f.Random.WordsArray(3).ToList()).Generate();
 
-//Convert hcNumbers to XML 
-
 var xml = new XElement("HC_NUMBERList", hcNumbers.HCNumbers!.Select(x => new XElement("HC_NUMBER", x))).ToString();
 xml = Regex.Replace(xml, @"\s+", "");
 
@@ -38,9 +36,7 @@ public static class XMLConverter
     public static string ConvertListOfQIDsToXML(HCNumberList qIdList)
     {
         StringBuilder builder = new();
-
-        //input xml to be used for SP_GET_MULTI_USER_CONFIRMED_APPTS_QID
-
+        
         XmlWriterSettings xmlWriterSettings = new()
         {
             OmitXmlDeclaration = true
